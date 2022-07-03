@@ -54,9 +54,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
+let g:gruvbox_italic=1
 colorscheme gruvbox
 
 let mapleader = " "
+
+set listchars=eol:$,tab:>~,multispace:__+
 
 "telescope related
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("grep?> ") })<CR>
