@@ -23,7 +23,7 @@ return {
 		"Fantasque Sans Mono",
 		"Fira Code",
 	}),
-	font_size = 14.0,
+	font_size = 12.0,
 	bold_brightens_ansi_colors = true,
 
 	-- Pretty colors
