@@ -3,6 +3,17 @@ local act = wezterm.action
 
 return {
 
+	-- Run PowerShell 7 as default
+	-- Uncomment if running on Windows, make sure that PS7 is in PATH
+	-- default_prog ={"pwsh.exe"},
+
+	-- QoL
+	audible_bell = "Disabled",
+	visual_bell =  {
+		target = "CursorColor",
+		fade_out_duration_ms = 250,
+	},
+
 	-- Window related
 	
 	window_frame = {
@@ -10,7 +21,15 @@ return {
 	},
 	enable_scroll_bar = false,
 
+	-- Pane related
+	inactive_pane_hsb = {
+	    saturation = 0.4,
+	    brightness = 0.5,
+	},
+	pane_focus_follows_mouse = true,
+
 	-- Tab bar related
+	-- Overriden by color scheme
 	
 	colors = {
 		tab_bar = {
@@ -41,6 +60,8 @@ return {
 		{ key="N", mods="LEADER", action=act.ActivateTabRelative(1)},
 
 		-- Pane operations, mostly behind meta
+		{ key="W", mods="LEADER", action=act.CloseCurrentPane{confirm=false}},
+		{ key="Z", mods="LEADER", action=act.TogglePaneZoomState },
 		{ key=",", mods="META", action=act.SplitPane{
 			direction="Down",
 			size={Percent=50},
@@ -49,13 +70,12 @@ return {
 			direction="Right",
 			size={Percent=50},
 		}},
-		{ key="Z", mods="META", action=act.TogglePaneZoomState },
-	    { key = "LeftArrow", mods="META",
-		  action=act.ActivatePaneDirection("Left")},
-    	{ key = "RightArrow", mods="META",
-		  action=act.ActivatePaneDirection("Right")},
-    	{ key = "UpArrow", mods="META",
-      	  action=act.ActivatePaneDirection("Up")},
+		{ key = "LeftArrow", mods="META",
+			action=act.ActivatePaneDirection("Left")},
+		{ key = "RightArrow", mods="META",
+		  	action=act.ActivatePaneDirection("Right")},
+    		{ key = "UpArrow", mods="META",
+			action=act.ActivatePaneDirection("Up")},
 		{ key = "DownArrow", mods="META",
 		  action=act.ActivatePaneDirection("Down")},
 	},
