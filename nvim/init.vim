@@ -15,8 +15,7 @@ set smartindent
 
 set exrc
 set guicursor=
-set relativenumber
-set nu
+set rnu
 set nohlsearch
 set hidden
 set noerrorbells
@@ -26,7 +25,7 @@ set nobackup
 set undodir=~/.vim/n_undodir
 set undofile
 set incsearch
-set scrolloff=8
+set scrolloff=12
 set colorcolumn=80
 set signcolumn=yes
 
@@ -35,6 +34,14 @@ set cmdheight=2
 set updatetime=50
 set shortmess+=fmnc
 
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+set listchars=eol:$,tab:>~,multispace:__
+autocmd BufWritePre * : call TrimWhitespace()
 set termguicolors
 
 call plug#begin('~/.vim/plugged')
@@ -52,8 +59,16 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " colors
 Plug 'gruvbox-community/gruvbox'
+" brackets
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/lh-brackets'
 call plug#end()
 
+" Brackets settings
+let b:usemarks = 0
+let g:marker_define_jump_mappings = 0
+
+" Gruvbox settings
 let g:gruvbox_italic=1
 colorscheme gruvbox
 

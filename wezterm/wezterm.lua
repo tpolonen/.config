@@ -15,11 +15,17 @@ return {
 	},
 
 	-- Window related
-	
 	window_frame = {
 		font_size = 10.0,
 	},
 	enable_scroll_bar = false,
+	window_padding = {
+		left = "5px",
+		right = "0px",
+		top = "5px",
+		bottom = "0px",
+	},
+	window_decorations = "NONE",
 
 	-- Pane related
 	inactive_pane_hsb = {
@@ -29,12 +35,10 @@ return {
 	pane_focus_follows_mouse = true,
 
 	-- Tab bar related
-	-- Overriden by color scheme
-	
-	colors = {
-		tab_bar = {
-		}
-	},
+
+	hide_tab_bar_if_only_one_tab = true,
+	tab_bar_at_bottom = true,
+	use_fancy_tab_bar = false,
 
 	-- Font related
 
@@ -70,12 +74,13 @@ return {
 			direction="Right",
 			size={Percent=50},
 		}},
-		{ key = "LeftArrow", mods="META",
-			action=act.ActivatePaneDirection("Left")},
-		{ key = "RightArrow", mods="META",
-		  	action=act.ActivatePaneDirection("Right")},
-    		{ key = "UpArrow", mods="META",
-			action=act.ActivatePaneDirection("Up")},
+		{ key="Z", mods="META", action=act.TogglePaneZoomState },
+	    { key = "LeftArrow", mods="META",
+		  action=act.ActivatePaneDirection("Left")},
+    	{ key = "RightArrow", mods="META",
+		  action=act.ActivatePaneDirection("Right")},
+    	{ key = "UpArrow", mods="META",
+      	  action=act.ActivatePaneDirection("Up")},
 		{ key = "DownArrow", mods="META",
 		  action=act.ActivatePaneDirection("Down")},
 	},
