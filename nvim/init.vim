@@ -9,6 +9,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
+" Some basic settings to start with
 set tabstop=4
 set shiftwidth=4
 set smartindent
@@ -32,7 +33,7 @@ set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set cmdheight=2
 set updatetime=50
-set shortmess+=fmnc
+" set shortmess+=fmnc
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -53,7 +54,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter'
 " autocomplete
-Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -73,8 +74,6 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 
 let mapleader = " "
-
-set listchars=eol:$,tab:>~,multispace:__+
 
 "telescope related
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("grep?> ") })<CR>

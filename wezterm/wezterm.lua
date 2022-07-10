@@ -15,6 +15,7 @@ return {
 	},
 
 	-- Window related
+
 	window_frame = {
 		font_size = 10.0,
 	},
