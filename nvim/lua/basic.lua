@@ -27,6 +27,7 @@ opt.number = true
 opt.relativenumber = true
 opt.colorcolumn = "80"
 opt.signcolumn = 'yes'
+opt.cursorline = true
 
 -- Search
 opt.hlsearch = false
@@ -42,7 +43,7 @@ opt.undofile = true
 opt.updatetime = 100
 
 -- Completion and popups
-opt.completeopt = 'menuone,noinsert,noselect'
+opt.completeopt = 'menuone,noinsert,preview'
 
 -- Status bar and commands
 table.insert(opt.shortmess, 'fmnc')
