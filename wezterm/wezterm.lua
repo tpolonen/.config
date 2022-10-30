@@ -6,6 +6,8 @@ return {
 	-- Run PowerShell 7 as default
 	-- Uncomment if running on Windows, make sure that PS7 is in PATH
 	-- default_prog ={"pwsh.exe"},
+	--
+	default_prog ={"zsh"},
 
 	-- QoL
 	audible_bell = "Disabled",
@@ -30,8 +32,8 @@ return {
 
 	-- Pane related
 	inactive_pane_hsb = {
-	    saturation = 0.4,
-	    brightness = 0.5,
+	    saturation = 0.8,
+	    brightness = 0.75,
 	},
 	pane_focus_follows_mouse = true,
 
