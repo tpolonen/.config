@@ -11,6 +11,10 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+-- TODO: better to have just the plugin download/activation here and make separate
+-- lua files for configuration/keybinds, so that everything related to a single
+-- plugin is available in the same file
+
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	use { "williamboman/mason.nvim",
@@ -24,55 +28,7 @@ return require('packer').startup(function(use)
 
 	use 'nvim-tree/nvim-web-devicons'
 
-	use {
-		"catppuccin/nvim",
-		as = "catppuccin",
-		config = function()
-			require("catppuccin").setup {
-				flavour = "mocha", -- mocha, macchiato, frappe, latte
-				term_colors = true,
-				integrations = {
-					treesitter = true,
-					native_lsp = {
-						enabled = true,
-						virtual_text = {
-							errors = { "italic" },
-							hints = { "italic" },
-							warnings = { "italic" },
-							information = { "italic" },
-						},
-						underlines = {
-							errors = { "underline" },
-							hints = { "underline" },
-							warnings = { "underline" },
-							information = { "underline" },
-						},
-					},
-				},
-				styles = {
-
-				},
-				highlight_overrides = {
-					all = function(colors)
-						return {
-							CursorLineNr = { fg = "#F5E0DC", },
-							LineNr = { fg = "#F2CDCD", },
-							Normal = { fg = "#DDB6F2", },
-						}
-					end,
-					mocha = function(mocha)
-						return {
-							CursorLineNr = { fg = mocha.green, },
-							LineNr = { fg = mocha.surface1, },
-							Normal = { fg = mocha.pink, },
-						}
-					end,
-				},
-			}
-			vim.api.nvim_command "colorscheme catppuccin"
-			end
-	}
-
+	use { "catppuccin/nvim", commit = 'c4f0f1a88304378cb76ac0a0c00a99f6d58f972f', }
 	use 'MunifTanjim/nui.nvim'
 	use 'rcarriga/nvim-notify'
 	use({
@@ -84,10 +40,53 @@ return require('packer').startup(function(use)
 			 }
 		end,
 	})
+	use "nvim-lua/plenary.nvim"
+	use {
+	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	-- or                            , branch = '0.1.x',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+	use {'nvim-telescope/telescope-ui-select.nvim' }
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use {
+	    'goolord/alpha-nvim',
+	    requires = { 'kyazdani42/nvim-web-devicons' },
+	    config = function ()
+	        require'alpha'.setup(require'alpha.themes.startify'.config)
+	    end
+	}
+
+	use { 'rmagatti/auto-session', }
+	use {
+		'rmagatti/session-lens',
+		requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+		config = function()
+			require('session-lens').setup({--[[your custom config--]]})
+		end
+	}
+
+	use {
+		'romgrk/barbar.nvim',
+		requires = {'kyazdani42/nvim-web-devicons'}
+	}
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
 		require('packer').sync()
 	end
+
+	-- Start of plugin config
+	require "cfg-auto-session"
+	require "cfg-barbar"
+	require "cfg-catppuccin"
+	require "cfg-lualine"
+	require "cfg-telescope"
 end)
+
 

@@ -1,6 +1,12 @@
 local opt = vim.opt
 local api = vim.api
 
+-- Neovide
+if vim.fn.exists('neovide') then
+	opt.guifont = { "JetBrains_Mono,FantasqueSansMono_NFM:h13:#e-subpixelantialias:#h-none" }
+	api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+end
+
 -- Language
 api.nvim_command('lan mes en_US')
 
