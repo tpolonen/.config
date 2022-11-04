@@ -74,6 +74,12 @@ return require('packer').startup(function(use)
 		'romgrk/barbar.nvim',
 		requires = {'kyazdani42/nvim-web-devicons'}
 	}
+	use { 'c0r73x/neotags.lua' }
+	use {
+		"windwp/nvim-autopairs",
+	    config = function() require("nvim-autopairs").setup {} end
+	}
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
@@ -83,6 +89,7 @@ return require('packer').startup(function(use)
 
 	-- Start of plugin config
 	require "cfg-auto-session"
+	require "cfg-coq"
 	require "cfg-barbar"
 	require "cfg-catppuccin"
 	require "cfg-lualine"

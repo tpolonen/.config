@@ -5,7 +5,7 @@ return {
 
 	-- Run PowerShell 7 as default
 	-- Uncomment if running on Windows, make sure that PS7 is in PATH
-	default_prog ={"pwsh.exe"},
+	-- default_prog ={"pwsh.exe"},
 
 	-- QoL
 	audible_bell = "Disabled",
